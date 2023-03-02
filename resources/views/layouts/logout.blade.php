@@ -22,11 +22,11 @@
 <body>
     <header>
         <h1><img src="images/main_logo.png"></h1>
-        <p>Social Network Service</p>
+        <p class="logo-title">Social Network Service</p>
     </header>
     <div id="container">
         @yield('content')
-    </div >
+    </div>
     <script src="JavaScriptファイルのURL"></script>
     <script src="JavaScriptファイルのURL"></script>
 </body>

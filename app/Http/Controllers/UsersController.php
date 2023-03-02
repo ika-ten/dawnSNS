@@ -11,6 +11,8 @@ class UsersController extends Controller
         return view('users.profile');
     }
     public function search(){
+
+        
         return view('users.search');
     }
 }

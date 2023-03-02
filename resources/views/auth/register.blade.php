@@ -4,19 +4,19 @@
 
 {!! Form::open() !!}
 
-<h2>新規ユーザー登録</h2>
+<p class="form-title">新規ユーザー登録</p>
 
-{{ Form::label('ユーザー名') }}
+{{ Form::label('UserName') }}
 {{ Form::text('username',null,['class' => 'input']) }}
 
-{{ Form::label('メールアドレス') }}
+{{ Form::label('MailAddress') }}
 {{ Form::text('mail',null,['class' => 'input']) }}
 
-{{ Form::label('パスワード') }}
+{{ Form::label('Password') }}
 {{ Form::text('password',null,['class' => 'input']) }}
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+{{ Form::label('Password confirm') }}
+{{ Form::text('password_confirmation',null,['class' => 'input']) }}
 
 {{ Form::submit('登録') }}
 
