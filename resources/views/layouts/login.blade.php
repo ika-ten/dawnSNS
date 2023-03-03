@@ -22,19 +22,37 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a href="/top"><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p><?php $user = Auth::user(); ?>{{ $user->username }}さん<img src="images/arrow.png"></p>
-                <div>
+            <div id="head-left">
+                <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
+            </div><!-- /.head-left -->
+            <div id="head-right">
+                <div id="head-right-box1">
+                    <p><?php $user = Auth::user(); ?>{{ $user->username }}さん</p>
+                </div><!-- /#head-right-box1 -->
+
+                <div id="head-right-box2">
+                    <div class="menu-trigger">
+                        <span></span>
+                        <span></span>
+                    </div><!-- /.menu-trigger -->
+                </div><!-- /#head-right-box2 -->
+
+                
+                <div id="head-right-box3">
+                    <img src="images/dawn.png" alt="">
+                </div><!-- /#head-right-box3 -->
+            </div><!-- /#head-right -->
+
+            <div id="accordion-content">
                 <ul>
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-            </div>
-        </div>
+            </div><!-- /#accordion-content -->
+        </div><!-- /#head -->
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
@@ -59,6 +77,6 @@
     <footer>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="{{ asset('js/style.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

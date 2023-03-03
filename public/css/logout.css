@@ -5,7 +5,7 @@ html{
 }
 body{
     height: 100%;
-    background: linear-gradient(#3C4767 60%,#B94047)
+    background: linear-gradient(#3C4767 60%, tomato)
 }
 
 header {
@@ -83,5 +83,5 @@ h2 {
 }
 
 .alert ul li {
-    color: red;
+    color: tomato;
 }
