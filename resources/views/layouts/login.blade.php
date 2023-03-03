@@ -22,7 +22,7 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
+        <h1><a href="/top"><img src="images/logo.png"></a></h1>
             <div id="">
                 <div id="">
                     <p><?php $user = Auth::user(); ?>{{ $user->username }}さん<img src="images/arrow.png"></p>
@@ -58,7 +58,7 @@
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{{ asset('js/style.js') }}"></script>
 </body>
 </html>

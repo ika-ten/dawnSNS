@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,16 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255',
             'mail' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4|confirmed',
+            'password-confirm' => 'required|min:4|confirmed|same:password',
+        ],
+        [
+            'email.required' => '必須項目です',
+            'email.email' => 'メールアドレスではありません',
+            'password.required' => '必須項目です',
+            'password.min' => '8文字以上で入力してください',
+            'password-confirm.required' => '必須項目です',
+            'password-confirm.min' => '8文字以上で入力してください',
+            'password-confirm.same' => 'パスワードと確認用パスワードが一致していません',
         ]);
     }
 
@@ -104,7 +115,9 @@ class RegisterController extends Controller
     }
 
     public function added(Request $request){
-        $username = $request->input('username');
+
+        $username = DB::table('users')->latest()->value('username');
+        //参考：https://programing-school.work/laravel-get-table-latest-row/
         return view('auth.added',['username'=>$username]);
     }
 }
