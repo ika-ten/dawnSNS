@@ -28,13 +28,11 @@
             <div id="head-right">
                 <div id="head-right-box1">
                     <p><?php $user = Auth::user(); ?>{{ $user->username }}さん</p>
+                        <!-- 参考：https://qiita.com/Shou_/items/6551fe66a406f21f5add-->
                 </div><!-- /#head-right-box1 -->
 
                 <div id="head-right-box2">
-                    <div class="menu-trigger">
-                        <span></span>
-                        <span></span>
-                    </div><!-- /.menu-trigger -->
+                    <div class="menu-trigger"></div><!-- /.menu-trigger -->
                 </div><!-- /#head-right-box2 -->
 
                 
@@ -60,18 +58,18 @@
         <div id="side-bar">
             <div id="confirm">
                 <p><?php $user = Auth::user(); ?>{{ $user->username }}さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                <div class="confirm-box">
+                    <p>フォロー数</p>
+                    <p>{{ $follow_count }}  名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                    <p class="btn"><a href="/follow-list">フォローリスト</a></p>
+                <div class="confirm-box">
+                    <p>フォロワー数</p>
+                    <p>{{ $follower_count }}  名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
