@@ -10,6 +10,10 @@ header {
     z-index: 10;
 }
 
+textarea {
+    resize: none;
+}
+
 /* main content */
 #row {
     display: flex;
@@ -23,6 +27,11 @@ header {
 #side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #6C6C6C;
+}
+
+#confirm {
+    width: 95%;
+    margin: 0 auto;
 }
 
 #head {
@@ -125,4 +134,8 @@ header {
 .confirm-box {
     display: flex;
     justify-content: space-between;
+}
+
+.round {
+    border-radius: 100px;
 }

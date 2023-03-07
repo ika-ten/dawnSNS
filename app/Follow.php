@@ -16,4 +16,10 @@ class Follow extends Model
         return $this->where('follower', $user_id)->count();
     }
     //参考：https://teratail.com/questions/297833
+
+    public function followingIds(Int $user_id)
+    {
+        return $this->where('follow', $user_id)->get('follower');
+    }
+
 };

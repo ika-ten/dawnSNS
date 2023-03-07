@@ -42,4 +42,9 @@ Route::get('/follower-list','PostsController@index');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 
+Route::resource('/top', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+//参考:https://qiita.com/namizatork/items/c9ed67f98fc3e5ce67c7
+
+
+
 
