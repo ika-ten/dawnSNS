@@ -37,7 +37,7 @@
 
                 
                 <div id="head-right-box3">
-                    <img src="images/dawn.png" alt="">
+                    <img src="images/dawn.png" alt="" class="round">
                 </div><!-- /#head-right-box3 -->
             </div><!-- /#head-right -->
 

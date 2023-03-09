@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use App\Post;
+use App\User;
+use App\Follow;
 
 class UsersController extends Controller
 {
@@ -10,9 +15,51 @@ class UsersController extends Controller
     public function profile(){
         return view('users.profile');
     }
-    public function search(){
 
+
+    public function search(User $user, Follow $follow)
+    {
+        $follow_count = $follow->getFollowCount($user->id);
+        $follower_count = $follow->getFollowerCount($user->id);
+
+        $all_users = $user->getAllUsers(auth()->user()->id);
+        $user = auth()->user();
+
+        $follow_ids = $follow->followingIds($user->id);
+        $following_ids = $follow_ids->pluck('follower')->toArray();
         
-        return view('users.search');
+
+        return view('users.search', [
+            'user'      => $user,
+            'all_users'  => $all_users,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
+        ]);
+    }
+
+     // フォロー
+    public function follow(User $user)
+    {
+        $follower = auth()->user();
+        // フォローしているか
+        $is_following = $follower->isFollowing($user->id);
+        if(!$is_following) {
+             // フォローしていなければフォローする
+            $follower->follow($user->id);
+            return back();
+        }
+    }
+    
+     // フォロー解除
+    public function unfollow(User $user)
+    {
+        $follower = auth()->user();
+         // フォローしているか
+        $is_following = $follower->isFollowing($user->id);
+        if($is_following) {
+            // フォローしていればフォローを解除する
+            $follower->unfollow($user->id);
+            return back();
+        }
     }
 }

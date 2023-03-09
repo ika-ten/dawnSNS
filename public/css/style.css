@@ -134,8 +134,18 @@ textarea {
 .confirm-box {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .round {
     border-radius: 100px;
 }
+
+.post-area-form {
+    display: flex;
+}
+
+.post-area-form-postbtn {
+    align-items: center;
+}
+

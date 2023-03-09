@@ -41,10 +41,15 @@ Route::get('/follower-list','PostsController@index');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-
-Route::resource('/top', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::post('posts/store','PostsController@store');
+Route::resource('/posts', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 //参考:https://qiita.com/namizatork/items/c9ed67f98fc3e5ce67c7
 
+Route::get('/search', 'UsersController@search')->name('search');
 
+Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+
+Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
 

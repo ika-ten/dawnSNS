@@ -46,7 +46,7 @@ class PostsController extends Controller
         $validator->validate();
         $post->postStore($user->id, $data);
 
-        return redirect('top');
+        return redirect('posts');
     }
     //参考：https://qiita.com/namizatork/items/c9ed67f98fc3e5ce67c7
 
