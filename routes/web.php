@@ -38,6 +38,8 @@ Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+Route::get('/follow-list','FollowsController@followList');
+Route::get('/follower-list','FollowsController@followerList');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
@@ -45,10 +47,13 @@ Route::post('posts/store','PostsController@store');
 Route::resource('/posts', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 //参考:https://qiita.com/namizatork/items/c9ed67f98fc3e5ce67c7
 
+
 Route::get('/search', 'UsersController@search')->name('search');
 
 Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
 Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+
+Route::get('/profile/{id}','UsersController@profile')->name('user_profile');
 
 Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 

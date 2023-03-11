@@ -1,26 +1,39 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="search-form">
-    {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
-</div><!-- /.search-form -->
+<div class="search-forms">
+  {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
+  <div class="search-form">
+  {!! Form::text('username' ,'', ['class' => 'search-form', 'placeholder' => ' ユーザー名'] ) !!}
+    <input type="image" src=""></input>
+    {!! Form::close() !!}
 
-@foreach ($all_users as $user)
+    @if(!empty($search))
+    <div class="search-form-result">
+      <label for="form"></label>
+      <p>{{ $search }}</p>
+    </div><!-- /.search-form-result -->
+    @endif
+  </div><!-- /.search-form -->
+</div><!-- /.search-forms-->
+
+
+@foreach ($data as $all_user)
 <div class="user-list">
   <div class="user-list-content">
     <img src="images/dawn.png" alt="" class="round"><!-- src="{{ $user->profile_image }}" -->
-    <p>{{ $user->username }}</p>
+    <p>{{ $all_user->username }}</p>
   </div><!-- /.user-list-content -->
   <div class="user-list-follow-btn">
-  @if (auth()->user()->isFollowing($user->id))
-    <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
+  @if (auth()->user()->isFollowing($all_user->id))
+    <form action="{{ route('unfollow', ['user' => $all_user->id]) }}" method="POST">
     @csrf
         {{ method_field('DELETE') }}
 
         <button type="submit">フォロー解除</button>
     </form>
   @else
-    <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
+    <form action="{{ route('follow', ['user' => $all_user->id]) }}" method="POST">
     @csrf
 
         <button type="submit">フォローする</button>

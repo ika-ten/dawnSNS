@@ -17,7 +17,7 @@ class UsersController extends Controller
     }
 
 
-    public function search(User $user, Follow $follow)
+    public function search(User $user, Follow $follow, Request $request)
     {
         $follow_count = $follow->getFollowCount($user->id);
         $follower_count = $follow->getFollowerCount($user->id);
@@ -27,13 +27,26 @@ class UsersController extends Controller
 
         $follow_ids = $follow->followingIds($user->id);
         $following_ids = $follow_ids->pluck('follower')->toArray();
+
+
+        $search = $request->input('username');
+        if ($request->has('username') && $search != '') {
+            $users = User::where('username', 'like', "%{$search}%")->where('id', '<>', $user->id)->get();
+            $data = $users;
+        } else {
+            $users = $user->getAllUsers(auth()->user()->id);
+            $data = $users;
+        }
         
 
         return view('users.search', [
             'user'      => $user,
             'all_users'  => $all_users,
             'follow_count'   => $follow_count,
-            'follower_count' => $follower_count
+            'follower_count' => $follower_count,
+
+            'data' => $data,
+            'search' => $search,
         ]);
     }
 

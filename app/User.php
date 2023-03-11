@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function getAllUsers(Int $user_id)
     {
-        return $this->Where('id', '<>', $user_id);
+        return $this->Where('id', '<>', $user_id)->paginate(20);
     }
 
     // フォローする
@@ -47,13 +47,13 @@ class User extends Authenticatable
     // フォローしているか
     public function isFollowing(Int $user_id) 
     {
-        return (boolean) $this->follows()->where('follower', $user_id)->first(['id']);
+        return (boolean) $this->follows()->where('follower', $user_id)->exists();
     }
 
     // フォローされているか
     public function isFollowed(Int $user_id) 
     {
-        return (boolean) $this->followers()->where('follow', $user_id)->first(['id']);
+        return (boolean) $this->followers()->where('follow', $user_id)->exists();
     }
 
     public function followers()
