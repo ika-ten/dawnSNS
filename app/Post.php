@@ -28,4 +28,24 @@ class Post extends Model
         return;
     }
 
+    public function getEditPost(Int $user_id, Int $post_id)
+    {
+        return $this->where('user_id', $user_id)->where('id', $post_id)->first();
+    }
+
+    public function edit(Post $post)
+    {
+        $user = auth()->user();
+        $posts = $post->getEditPost($user->id, $post->id);
+
+        if (!isset($posts)) {
+            return redirect('posts');
+        }
+
+        return view('posts.index', [
+            'user'   => $user,
+            'posts' => $posts
+        ]);
+    }
+
 }

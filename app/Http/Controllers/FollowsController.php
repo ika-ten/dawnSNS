@@ -11,44 +11,48 @@ use App\Follow;
 
 class FollowsController extends Controller
 {
-    //
-    public function followList(){
-        
-        $follower_id = DB::table('follows')
-            ->where('follow',Auth::id())
-            ->pluck('follower'); 
-
-        $posts = DB::table('posts')
-            ->join('users','posts.user_id','=','users.id')
-            ->whereIn('user_id',$follower_id)
-            ->select('posts.posts','posts.created_at as created_at','users.id','users.username','users.images')
-            ->orderBy('posts.created_at', 'desc')
-            ->get();
-
-
-        return view('follows.followList',compact('posts'));
-    }
-
-    public function followerList(){
-        $follow_id = DB::table('follows')
-        ->where('follower',Auth::id())
-        ->pluck('follow');
-
-
-    $posts = DB::table('posts')
-        ->join('users','posts.user_id','=','users.id')
-        ->whereIn('user_id',$follow_id)
-        ->select('posts.posts','posts.created_at as created_at','users.id','users.username','users.images')
-        ->orderBy('posts.created_at', 'desc')
-        ->get();
-
-    return view('follows.followerList',compact('posts'));
-    }
-
-    //参考：https://www.ritolab.com/posts/93
-    //https://dawn-techschool.com/curriculum/server/6/41
-    //
     
+    public function followList(User $user, Post $post, Follow $follow){
+        $follow_count = $follow->getFollowCount($user->id);
+        $follower_count = $follow->getFollowerCount($user->id);
+
+        $user = auth()->user();
+
+        $follow_ids = $follow->followingIds($user->id);
+        $following_ids = $follow_ids->pluck('follower')->toArray();
+
+        $follow_id_lists = User::find($follow_ids);
+        $timeLines = $post->getTimelines($user->id, $following_ids);
+
+        return view('follows.followList',[ 
+            'user' => $user, 
+            'timeLines' => $timeLines,
+            'follow_id_lists' => $follow_id_lists,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
+        ]);
+    }
+
+    public function followerList(User $user, Post $post, Follow $follow){
+        $follow_count = $follow->getFollowCount($user->id);
+        $follower_count = $follow->getFollowerCount($user->id);
+
+        $user = auth()->user();
+
+        $follow_ids = $follow->followingIds($user->id);
+        $following_ids = $follow_ids->pluck('follow')->toArray();
+
+        $follow_id_lists = User::find($follow_ids);
+        $timeLines = $post->getTimelines($user->id, $following_ids);
+
+        return view('follows.followerList',[ 
+            'user' => $user, 
+            'timeLines' => $timeLines,
+            'follow_id_lists' => $follow_id_lists,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
+        ]);
+    }
 
     
 }

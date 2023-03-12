@@ -17,15 +17,12 @@
     </form>
 </div><!-- /#post-area -->
 
-  <!-- 4.2 ログインユーザーのつぶやきを表示 -->
-  <!-- 4.2.1 ログインユーザーのフォローのつぶやき表示を表示 -->
-  @if (isset($timelines))
-  @foreach ($timelines as $timeline)
+@if (isset($timelines))
+@foreach ($timelines as $timeline)
   <div class="tweets-top">
     <div class="card">
       <div class="tweet-timelines">
         <div id="top-image2" class="top-image2">
-
           <p><img src="images/dawn.png" class="rounded-circle"></p>
         </div>
         <div class="timelines">
@@ -35,26 +32,14 @@
         <div class="tweets-top-time">
           <p>{{ $timeline->created_at }}</p>
         </div>
-      </div>
-
-
+      </div> 
       @if ($timeline->id === Auth::user()->id)
-
-
-      <div class="tweet-menu">
-
-
-
-
-
-      </div>
-
+      <div class="tweet-menu"></div>
       @endif
-
     </div>
   </div>
-  @endforeach
-  @endif
+@endforeach
+@endif
 
 
 
