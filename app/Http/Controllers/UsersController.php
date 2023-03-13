@@ -76,4 +76,44 @@ class UsersController extends Controller
         }
     }
 
+    public function edit(User $user)
+    {
+        return view('users.profile', ['user' => $user]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
+            'name'          => ['required', 'string', 'max:255'],
+            'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
+        ]);
+        $validator->validate();
+        $user->updateProfile($data);
+
+        return redirect('users.profile'.$user->id);
+    }
+
+    public function index(User $user, Follow $follow, Post $post){
+        $follow_count = $follow->getFollowCount($user->id);
+        $follower_count = $follow->getFollowerCount($user->id);
+
+        
+        $user = auth()->user();
+        
+        //$follow_ids = $follow->followingIds($user->id);
+        //$following_ids = $follow_ids->pluck('follower')->toArray();
+        
+        //$timelines = $post->getTimelines($user->id, $following_ids);
+
+        return view('users.profile', [
+            'user'      => $user,
+            //'timelines' => $timelines,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
+        ]);
+    }
+
 }

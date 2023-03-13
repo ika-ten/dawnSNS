@@ -65,4 +65,28 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(self::class, 'follows', 'follow', 'follower');
     }
+
+    public function updateProfile(Array $params)
+    {
+        if (isset($params['profile_image'])) {
+            $file_name = $params['profile_image']->store('public/images');
+
+            $this::where('id', $this->id)
+                ->update([
+                    'screen_name'   => $params['screen_name'],
+                    'name'          => $params['name'],
+                    'profile_image' => basename($file_name),
+                    'email'         => $params['email'],
+                ]);
+        } else {
+            $this::where('id', $this->id)
+                ->update([
+                    'screen_name'   => $params['screen_name'],
+                    'name'          => $params['name'],
+                    'email'         => $params['email'],
+                ]); 
+        }
+
+        return;
+    }
 }

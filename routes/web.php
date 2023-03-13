@@ -33,8 +33,9 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::get('/top','PostsController@index');
 
 Route::get('/profile','UsersController@profile');
+Route::get('/profile','UsersController@index');
 
-Route::get('/search','UsersController@index');
+//Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','FollowsController@followList');
 Route::get('/follower-list','FollowsController@followerList');
