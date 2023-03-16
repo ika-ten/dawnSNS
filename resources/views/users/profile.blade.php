@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!-- 確認用パクりレイアウト  用修正-->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

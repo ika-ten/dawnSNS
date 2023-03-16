@@ -22,11 +22,11 @@ class FollowsController extends Controller
         $following_ids = $follow_ids->pluck('follower')->toArray();
 
         $follow_id_lists = User::find($follow_ids);
-        $timeLines = $post->getTimelines($user->id, $following_ids);
+        $timelines = $post->getTimelines($user->id, $following_ids);
 
         return view('follows.followList',[ 
             'user' => $user, 
-            'timeLines' => $timeLines,
+            'timelines' => $timelines,
             'follow_id_lists' => $follow_id_lists,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count
@@ -43,11 +43,11 @@ class FollowsController extends Controller
         $following_ids = $follow_ids->pluck('follow')->toArray();
 
         $follow_id_lists = User::find($follow_ids);
-        $timeLines = $post->getTimelines($user->id, $following_ids);
+        $timelines = $post->getTimelines($user->id, $following_ids);
 
         return view('follows.followerList',[ 
             'user' => $user, 
-            'timeLines' => $timeLines,
+            'timelines' => $timelines,
             'follow_id_lists' => $follow_id_lists,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count

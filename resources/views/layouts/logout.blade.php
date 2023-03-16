@@ -7,6 +7,7 @@
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
     <link rel="stylesheet" href="css/reset.css">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="css/logout.css">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />

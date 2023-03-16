@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\User;
 use App\Follow;
@@ -53,5 +54,37 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function updateForm($id)
+    {
+        $post = DB::table('posts')
+            ->where('id', $id)
+            ->first();
+        return view('posts.updateForm', [
+                    'post' => $post
+                ]);
+    }
+
+    public function update(Request $request)
+    {
+        $id = $request->input('id');
+        $up_post = $request->input('upPost');
+        DB::table('posts')
+            ->where('id', $id)
+            ->update(
+                ['posts' => $up_post]
+            );
+
+        return redirect('posts');
+    }
+
+    public function delete($id)
+    {
+        DB::table('posts')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect('posts');
     }
 }

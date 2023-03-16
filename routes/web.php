@@ -56,4 +56,9 @@ Route::get('/profile/{id}','UsersController@profile')->name('user_profile');
 
 Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
+Route::get('post/{id}/update-form', 'PostsController@updateForm');
+//Route::get('top', 'PostsController@updateForm');
+Route::post('post/update', 'PostsController@update');
+Route::get('post/{id}/delete', 'PostsController@delete');
+
 

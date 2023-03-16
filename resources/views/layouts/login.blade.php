@@ -7,6 +7,7 @@
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
     <link rel="stylesheet" href="css/reset.css">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -37,7 +38,7 @@
 
                 
                 <div id="head-right-box3">
-                    <img src="images/dawn.png" alt="" class="round">
+                    <img src="images/{{$user->images}}" class="round" width="50px" height="50px">
                 </div><!-- /#head-right-box3 -->
             </div><!-- /#head-right -->
 
