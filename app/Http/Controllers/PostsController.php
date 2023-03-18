@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
 use App\Follow;
@@ -12,7 +13,7 @@ use App\Follow;
 class PostsController extends Controller
 {
     //
-    public function index(User $user, Follow $follow, Post $post){
+    public function index(User $user, Follow $follow, Post $post, Request $request){
         $follow_count = $follow->getFollowCount($user->id);
         $follower_count = $follow->getFollowerCount($user->id);
 
@@ -23,6 +24,16 @@ class PostsController extends Controller
         $following_ids = $follow_ids->pluck('follower')->toArray();
         
         $timelines = $post->getTimelines($user->id, $following_ids);
+
+        if($request->filled('upPost')){
+            $post_id = $request->input('id');
+            $user_editPost = $request->input('upPost');
+
+
+            Post::where('id',$post_id)->update(['posts' => $user_editPost]);
+
+            return redirect('/top');
+        }
 
         return view('posts.index', [
             'user'      => $user,
@@ -56,10 +67,10 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function updateForm($id)
+    public function updateForm()
     {
         $post = DB::table('posts')
-            ->where('id', $id)
+            ->where('id', 1)
             ->first();
         return view('posts.updateForm', [
                     'post' => $post
@@ -87,4 +98,6 @@ class PostsController extends Controller
 
         return redirect('posts');
     }
+
+
 }

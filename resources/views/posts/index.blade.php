@@ -34,16 +34,38 @@
           <p>{{ $timeline->created_at }}</p>
         </div>
       </div> 
+      <?php echo $timeline ?>
       @if ($timeline->user_id === Auth::user()->id)
       <div class="tweet-menu">
-      <a class="edit-btn" href="/post/{{ $timeline->id }}/update-form"><img src="images/edit.png" alt=""></a>
-      <a class="trash-btn" href="/post/{{ $timeline->id }}/delete"><img src="images/trash.png" alt=""  onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a>
+        <!--
+        <a class="edit-btn" href="/post/{{ $timeline->id }}/update-form"><img src="images/edit.png" alt=""></a>
+        -->
+        <a class="edit-btn" class="modalopen" href="" data-target="edit-modal-{{ $timeline -> id }}"><img src="images/edit.png" alt=""></a>
+        <a class="trash-btn" href="/post/{{ $timeline->id }}/delete"><img src="images/trash.png" alt=""  onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a>
+        <!-- edit-modal -->
+        <div class="modal-main js-modal" id="edit-modal-{{ $timeline -> id }}">
+          <div class="modal-inner">
+            <div class="inner-content">
+              <?php echo $timeline ?>
+              {!! Form::open(['url' => '/top','method' => 'post']) !!}
+              {!! Form::hidden('id', $timeline->id) !!}
+              {!! Form::input('text', 'upPost', $timeline->posts, ['required', 'class' => 'form-control']) !!}
+                <button class="inner-post-edit-image">
+                  <img src="images/edit.png" alt="">
+                </button>
+                <a class="send-button modalClose">Close</a><!-- /.send-button modalClose -->
+              {!! Form::close()!!}
+            </div>
+          </div>
+        </div>
       </div>
       @endif
     </div>
   </div>
 @endforeach
 @endif
+
+
 
 
 

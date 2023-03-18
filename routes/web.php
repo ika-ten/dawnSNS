@@ -31,9 +31,11 @@ Route::get('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index');
+Route::post('/top','PostsController@index');
 
-Route::get('/profile','UsersController@profile');
-Route::get('/profile','UsersController@index');
+//Route::get('/profile','UsersController@profile');
+//Route::get('/profile','UsersController@index');
+//Route::get('/profile/{id}','UsersController@index');
 
 //Route::get('/search','UsersController@index');
 
@@ -52,7 +54,8 @@ Route::get('/search', 'UsersController@search')->name('search');
 Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
 Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
-Route::get('/profile/{id}','UsersController@profile')->name('user_profile');
+
+//Route::get('/profile/{id}','UsersController@updateProfile');
 
 Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
@@ -61,4 +64,8 @@ Route::get('post/{id}/update-form', 'PostsController@updateForm');
 Route::post('post/update', 'PostsController@update');
 Route::get('post/{id}/delete', 'PostsController@delete');
 
+Route::get('/profile' , 'PostsController@profile');
+Route::post('/profile' , 'PostsController@profile');
+
+Route::get('/profile/{id}' , 'PostsController@profile');
 

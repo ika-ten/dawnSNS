@@ -28,7 +28,7 @@
             </div><!-- /.head-left -->
             <div id="head-right">
                 <div id="head-right-box1">
-                    <p><?php $user = Auth::user(); ?>{{ $user->username }}さん</p>
+                    <p>{{ $user->username }}さん</p>
                         <!-- 参考：https://qiita.com/Shou_/items/6551fe66a406f21f5add-->
                 </div><!-- /#head-right-box1 -->
 
@@ -58,15 +58,15 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p><?php $user = Auth::user(); ?>{{ $user->username }}さんの</p>
+                <p><{{$user->username}}さんの</p>
                 <div class="confirm-box">
                     <p>フォロー数</p>
-                    <p>{{ $follow_count }}  名</p>
+                    <p>{{ $user->followersCount() }}名</p>
                 </div>
                     <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div class="confirm-box">
                     <p>フォロワー数</p>
-                    <p>{{ $follower_count }}  名</p>
+                    <p>{{ $user->followsCount() }}名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

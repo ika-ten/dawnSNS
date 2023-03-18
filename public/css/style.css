@@ -149,3 +149,72 @@ textarea {
     align-items: center;
 }
 
+
+/* モーダル */
+.modal-main {
+   display: none;
+}
+
+.modal-inner {
+    width: 100%;
+  height: 100%;
+  background-color: rgba( 51, 51, 51, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.modal-inner img {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.inner-content {
+    padding: 1vw;
+  margin-bottom: 1vw;
+  border: 2px solid gray;
+  position: fixed;
+  top: 10vw;
+  left: 24vw;
+  width: 50%;
+  height: 30%;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.form-control {
+      color: gray;
+  width: 90%;
+  height: 7vw;
+  border: 2px solid gray;
+  border-radius: 5px;
+  margin-left: 2vw;
+}
+
+.inner-title {
+  margin-top: 40px;
+  margin-bottom: 32px;
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.contents-validator{
+  color: tomato;
+  float: left;
+  margin: 1vw 0 0 2vw;
+}
+
+.inner-text {
+  font-size: 1.6rem;
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 28px;
+}
+
+.modalClose {
+  cursor: pointer;
+}

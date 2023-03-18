@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
+use \Auth;
 
 class User extends Authenticatable
 {
@@ -89,4 +91,19 @@ class User extends Authenticatable
 
         return;
     }
+
+    public function followsCount()
+    {
+        $id = Auth::id();
+        $followCount = Follow::where('follow', $id)->count();
+        return $followCount;
+    }
+
+    public function followersCount()
+    {
+        $id = Auth::id();
+        $followerCount = Follow::where('follower', $id)->count();
+        return $followerCount;
+    }
+
 }
