@@ -64,8 +64,10 @@ Route::get('post/{id}/update-form', 'PostsController@updateForm');
 Route::post('post/update', 'PostsController@update');
 Route::get('post/{id}/delete', 'PostsController@delete');
 
-Route::get('/profile' , 'PostsController@profile');
-Route::post('/profile' , 'PostsController@profile');
+//Route::get('/profile' , 'PostsController@profile');
+//Route::post('/profile' , 'PostsController@profile');
 
-Route::get('/profile/{id}' , 'PostsController@profile');
+Route::get('/profile/{id}' , 'UsersController@index');
+Route::post('/profile/{id}' , 'UsersController@index');
+Route::post('user/update' , 'UsersController@update');
 

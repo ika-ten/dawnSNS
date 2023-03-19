@@ -152,7 +152,7 @@ textarea {
 
 /* モーダル */
 .modal-main {
-   display: none;
+  
 }
 
 .modal-inner {
@@ -174,14 +174,12 @@ textarea {
 .inner-content {
     padding: 1vw;
   margin-bottom: 1vw;
-  border: 2px solid gray;
   position: fixed;
   top: 10vw;
   left: 24vw;
   width: 50%;
   height: 30%;
   background-color: white;
-  border-radius: 5px;
   z-index: 5;
 }
 
@@ -190,7 +188,6 @@ textarea {
   width: 90%;
   height: 7vw;
   border: 2px solid gray;
-  border-radius: 5px;
   margin-left: 2vw;
 }
 
@@ -213,6 +210,12 @@ textarea {
   text-align: center;
   margin: 0 auto;
   margin-bottom: 28px;
+}
+
+.edit-btn {
+    background: #FFF;
+    border: none;
+    margin:0.5vw 0 0 6vw;
 }
 
 .modalClose {

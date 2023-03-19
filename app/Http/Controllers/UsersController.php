@@ -13,9 +13,6 @@ use App\Follow;
 class UsersController extends Controller
 {
     //
-    public function profile(){
-        return view('users.profile');
-    }
 
 
     public function search(User $user, Follow $follow, Request $request)
@@ -83,12 +80,16 @@ class UsersController extends Controller
     }
 
 
-    public function index(User $user, Follow $follow, Post $post){
+    public function index(User $user, Follow $follow, Post $post, $id){
         $follow_count = $follow->getFollowCount($user->id);
         $follower_count = $follow->getFollowerCount($user->id);
 
         
         $user = auth()->user();
+
+        $profile = DB::table('users')
+        ->where('id', $id)
+        ->first();
         
         $follow_ids = $follow->followingIds($user->id);
         $following_ids = $follow_ids->pluck('follower')->toArray();
@@ -99,8 +100,28 @@ class UsersController extends Controller
             'user'      => $user,
             'timelines' => $timelines,
             'follow_count'   => $follow_count,
-            'follower_count' => $follower_count
+            'follower_count' => $follower_count,
+            'profile' => $profile
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        $id = $request->input('id');
+        $user_name = $request->input('userName');
+        $mail = $request->input('mail');
+        $password = $request->input('passWord');
+        $bio = $request->input('bio');
+        DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'username' => $user_name,
+                'mail' => $mail,
+                'password' => $password,
+                'bio' => $bio
+            ]);
+
+        return redirect('profile/{id}');
     }
 
 }

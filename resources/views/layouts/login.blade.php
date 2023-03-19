@@ -29,7 +29,6 @@
             <div id="head-right">
                 <div id="head-right-box1">
                     <p>{{ $user->username }}さん</p>
-                        <!-- 参考：https://qiita.com/Shou_/items/6551fe66a406f21f5add-->
                 </div><!-- /#head-right-box1 -->
 
                 <div id="head-right-box2">
@@ -45,7 +44,7 @@
             <div id="accordion-content">
                 <ul>
                     <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
+                    <li><a href="/profile/{{ $user->id }}">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
             </div><!-- /#accordion-content -->
