@@ -36,7 +36,7 @@
       </div> 
       @if ($timeline->user_id === Auth::user()->id)
       <div class="tweet-menu">
-        <a class="edit-btn" class="modalopen" href="" data-target="edit-modal-{{ $timeline -> id }}"><img src="images/edit.png" alt=""></a>
+        <a class="edit-btn modalopen" href="" data-target="edit-modal-{{ $timeline -> id }}"><img src="images/edit.png" alt=""></a>
         <a class="trash-btn" href="/post/{{ $timeline->id }}/delete"><img src="images/trash.png" alt=""  onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a>
         <!-- edit-modal -->
         <div class="modal-main js-modal" id="edit-modal-{{ $timeline -> id }}">

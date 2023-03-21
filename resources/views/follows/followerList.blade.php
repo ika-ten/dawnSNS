@@ -4,10 +4,10 @@
 <div class="follow-lists">
   <p>Follow list</p>
   <div class="follow-images">
-  @foreach ($follow_id_lists as $follow_id_list)
+  @foreach ($follower_id_lists as $follower_id_list)
     <div class="follow-image">
-      <a href="/profile/{{ $follow_id_list -> id}}">
-        <img src="images/{{ $follow_id_list -> images}}" alt="follow image" class='round' width="55px" height="55px">
+      <a href="/profile/{{ $follower_id_list -> id}}">
+        <img src="images/{{ $follower_id_list -> images}}" alt="follower image" class='round' width="55px" height="55px">
       </a>
     </div><!-- follow-image -->
   @endforeach

@@ -42,7 +42,6 @@ class UsersController extends Controller
             'all_users'  => $all_users,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
-
             'data' => $data,
             'search' => $search,
         ]);
@@ -88,40 +87,51 @@ class UsersController extends Controller
         $user = auth()->user();
 
         $profile = DB::table('users')
-        ->where('id', $id)
-        ->first();
+            ->where('id', $id)
+            ->first();
+
+        $timelines = DB::table('posts')
+            ->where('user_id', $id)
+            ->get();
         
         $follow_ids = $follow->followingIds($user->id);
         $following_ids = $follow_ids->pluck('follower')->toArray();
         
-        $timelines = $post->getTimelines($user->id, $following_ids);
-
+        //$timelines = $post->getTimelines($user->id, $following_ids);
+        
         return view('users.profile', [
             'user'      => $user,
             'timelines' => $timelines,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
-            'profile' => $profile
+            'profile' => $profile,
         ]);
     }
-
+    
     public function update(Request $request)
     {
+    
         $id = $request->input('id');
         $user_name = $request->input('userName');
         $mail = $request->input('mail');
         $password = $request->input('passWord');
         $bio = $request->input('bio');
+
+        $image = $request->file('image-file');
+        $filename = $request->file('image-file')->getClientOriginalName();
+        $request->file('image-file')->storeAs('images',$filename, 'public');
+
         DB::table('users')
             ->where('id', $id)
             ->update([
                 'username' => $user_name,
                 'mail' => $mail,
-                'password' => $password,
-                'bio' => $bio
+                'password' => bcrypt($password),
+                'bio' => $bio,
+                'images' => $filename
             ]);
 
-        return redirect('profile/{id}');
+        return back();
     }
 
 }

@@ -39,16 +39,16 @@ class FollowsController extends Controller
 
         $user = auth()->user();
 
-        $follow_ids = $follow->followingIds($user->id);
-        $following_ids = $follow_ids->pluck('follow')->toArray();
+        $follower_ids = $follow->followedIds($user->id);
+        $followed_ids = $follower_ids->pluck('follow')->toArray();
 
-        $follow_id_lists = User::find($follow_ids);
-        $timelines = $post->getTimelines($user->id, $following_ids);
+        $follower_id_lists = User::find($follower_ids);
+        $timelines = $post->getTimelines($user->id, $followed_ids);
 
         return view('follows.followerList',[ 
             'user' => $user, 
             'timelines' => $timelines,
-            'follow_id_lists' => $follow_id_lists,
+            'follower_id_lists' => $follower_id_lists,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count
         ]);

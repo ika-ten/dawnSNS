@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="{{asset('css/reset.css')}}">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -24,7 +24,7 @@
     <header>
         <div id = "head">
             <div id="head-left">
-                <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
+                <h1><a href="/top"><img src="{{asset('images/main_logo.png')}}"></a></h1>
             </div><!-- /.head-left -->
             <div id="head-right">
                 <div id="head-right-box1">
@@ -37,7 +37,7 @@
 
                 
                 <div id="head-right-box3">
-                    <img src="images/{{$user->images}}" class="round" width="50px" height="50px">
+                    <img src="{{asset('images/'.$user->images)}}" class="round" width="50px" height="50px">
                 </div><!-- /#head-right-box3 -->
             </div><!-- /#head-right -->
 
@@ -60,12 +60,12 @@
                 <p><{{$user->username}}さんの</p>
                 <div class="confirm-box">
                     <p>フォロー数</p>
-                    <p>{{ $user->followersCount() }}名</p>
+                    <p>{{ $user->followsCount() }}名</p>
                 </div>
                     <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div class="confirm-box">
                     <p>フォロワー数</p>
-                    <p>{{ $user->followsCount() }}名</p>
+                    <p>{{ $user->followersCount() }}名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

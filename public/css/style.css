@@ -139,6 +139,8 @@ textarea {
 
 .round {
     border-radius: 100px;
+    max-width: 50px;
+    max-height: 50px;
 }
 
 .post-area-form {
@@ -152,7 +154,7 @@ textarea {
 
 /* モーダル */
 .modal-main {
-  
+  display: none;
 }
 
 .modal-inner {

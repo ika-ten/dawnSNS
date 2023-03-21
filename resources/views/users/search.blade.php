@@ -21,7 +21,7 @@
 @foreach ($data as $all_user)
 <div class="user-list">
   <div class="user-list-content">
-    <img src="/images/{{ $all_user->images }}" alt="" class="round" width="50px" height="50px">
+    <img src="/images/{{ $all_user->images }}" alt="" class="round">
     <p>{{ $all_user->username }}</p>
   </div><!-- /.user-list-content -->
   <div class="user-list-follow-btn">
