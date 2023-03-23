@@ -108,8 +108,7 @@ class UsersController extends Controller
         ]);
     }
     
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
     
         $id = $request->input('id');
         $user_name = $request->input('userName');
@@ -117,9 +116,31 @@ class UsersController extends Controller
         $password = $request->input('passWord');
         $bio = $request->input('bio');
 
+        $request->validate(
+            [
+                'username' => 'required|min:4|max:12',
+                'mail' => 'required|min:4|max:12|unique:users,mail,'.$id.'',
+                'password' => 'nullable|numeric|digits_between:4,12|unique:users,password',
+                'bio' => 'max:200',
+                'image-file' => 'image',
+            ],
+            [
+                "required" => "入力必須",
+                "username.min" => "ユーザーネームは4文字以上から",
+                "mail.min" => "メールアドレスは4文字以上から",
+                "password.min" => "パスワードは4文字以上から",
+                "username.max" => "ユーザーネームは12文字以内",
+                "mail.max" => "メールアドレスは12文字以内",
+                "password.max" => "パスワードは12文字以内",
+                "digits_between" => "4字以上12字以内",
+                "unique" => "既に存在します",
+                "image" => "jpg,png,bmp,gif,svgの拡張子のみ有効です"
+            ],
+        );
+
         $image = $request->file('image-file');
-        $filename = $request->file('image-file')->getClientOriginalName();
-        $request->file('image-file')->storeAs('images',$filename, 'public');
+        $filename = $image->getClientOriginalName();
+        $request->file('image-file')->storeAs('images',$filename, 'public_uploads');
 
         DB::table('users')
             ->where('id', $id)
