@@ -20,42 +20,47 @@
 
 @if (isset($timelines))
 @foreach ($timelines as $timeline)
-  <div class="tweets-top">
-    <div class="card">
-      <div class="tweet-timelines">
-        <div id="top-image2" class="top-image2">
-          <p><img src="images/{{$timeline->user->images}}" class="round" width="50px" height="50px"></p>
-        </div>
-        <div class="timelines">
-          <p class="tweets-top-username">{{ $timeline->user->username }}</p>
-          <p class="tweets-top-text">{!! nl2br(e($timeline->posts)) !!}</p>
-        </div>
-        <div class="tweets-top-time">
-          <p>{{ $timeline->created_at }}</p>
-        </div>
-      </div> 
+  <div class="tweets">
+      <div class="tweets-box">
+          <div class="tweet-title">
+            <div class="tweet-user-img">
+                <p><img src="images/{{$timeline->user->images}}" class="round" width="50px" height="50px"></p>
+            </div><!-- /.tweet-user-img -->
+            <div class="tweet-user-name">
+                <p>{{ $timeline->user->username }}</p>
+            </div><!-- /.tweet-user-name -->
+            <div class="tweet-created-time">
+                <p>{{ $timeline->created_at }}</p>
+            </div><!-- /.tweet-created-time -->
+        </div><!-- /.tweet-title -->
+        <div class="tweet-timeline">
+            <p class="tweets-top-text">{!! nl2br(e($timeline->posts)) !!}</p>
+        </div><!-- /.tweet-timeline -->
+      </div><!-- /.tweets-box -->
       @if ($timeline->user_id === Auth::user()->id)
       <div class="tweet-menu">
         <a class="edit-btn modalopen" href="" data-target="edit-modal-{{ $timeline -> id }}"><img src="images/edit.png" alt=""></a>
-        <a class="trash-btn" href="/post/{{ $timeline->id }}/delete"><img src="images/trash.png" alt=""  onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a>
-        <!-- edit-modal -->
-        <div class="modal-main js-modal" id="edit-modal-{{ $timeline -> id }}">
-          <div class="modal-inner">
-            <div class="inner-content">
-              {!! Form::open(['url' => '/top','method' => 'post']) !!}
-              {!! Form::hidden('id', $timeline->id) !!}
-              {!! Form::input('text', 'upPost', $timeline->posts, ['required', 'class' => 'form-control']) !!}
-                <button class="edit-btn">
-                  <img src="images/edit.png" alt="">
-                </button>
-                <a class="send-button modalClose">Close</a><!-- /.send-button modalClose -->
-              {!! Form::close()!!}
-            </div>
+        <a class="trash-btn" href="/post/{{ $timeline->id }}/delete"><img class="trash" src="images/trash.png" alt=""  onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a>
+      </div>
+      @endif
+      
+      
+      
+      <!-- edit-modal -->
+      <div class="modal-main js-modal" id="edit-modal-{{ $timeline -> id }}">
+        <div class="modal-inner">
+          <div class="inner-content">
+            {!! Form::open(['url' => '/top','method' => 'post']) !!}
+            {!! Form::hidden('id', $timeline->id) !!}
+            {!! Form::input('text', 'upPost', $timeline->posts, ['required', 'class' => 'form-control']) !!}
+            <div class="modal-edit-btn">
+              <button class="edit-btn"><img src="images/edit.png" alt=""></button>
+            </div><!-- /.modal-edit-btn -->  
+            {!! Form::close()!!}
           </div>
         </div>
       </div>
-      @endif
-    </div>
+
   </div>
 @endforeach
 @endif

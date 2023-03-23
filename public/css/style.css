@@ -2,12 +2,29 @@
 
 html {}
 
-body {}
+body {
+    background: #fff;
+}
 
 /* header */
 header {
     background: #3C4767;
     z-index: 10;
+    max-height: 100px;
+    height: 10vh;
+}
+
+#head {
+    max-width: 1200px;
+    margin: 0 5vw;
+}
+
+#head-left h1 {
+    margin: 0;
+}
+
+#head-right-box1 p {
+    margin: 0;
 }
 
 textarea {
@@ -25,13 +42,11 @@ textarea {
 }
 
 #side-bar {
-    flex: 0 0 19%;
+    flex: 0 0 20%;
     border-left: 1px solid #6C6C6C;
 }
 
 #confirm {
-    width: 95%;
-    margin: 0 auto;
 }
 
 #head {
@@ -52,9 +67,9 @@ textarea {
 #accordion-content {
     display: none;
     position: absolute;
-    bottom: -159px;
-    right: 0;
-    width: 250px;
+    bottom: -189px;
+    right: -64px;
+    width: 251px;
     background-color: #fff;
     transition: 0.5s ease-in-out;
 }
@@ -90,6 +105,12 @@ textarea {
 #head-right-box2 {
     margin-right: 20px;
     margin-left: 20px;
+}
+
+/* sidebar */ 
+.search-btn {
+    border-top: 1px solid silver;
+    padding-top: 30px;
 }
 
 .menu-trigger {
@@ -132,9 +153,13 @@ textarea {
 }
 
 .confirm-box {
+    margin-left: 1vw;
+    margin-right: 3vw;
+}
+
+.confirm-box-text {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .round {
@@ -174,13 +199,13 @@ textarea {
 }
 
 .inner-content {
-    padding: 1vw;
+    padding: 3vw 1vw 1vw;
   margin-bottom: 1vw;
   position: fixed;
   top: 10vw;
   left: 24vw;
   width: 50%;
-  height: 30%;
+  height: 20%;
   background-color: white;
   z-index: 5;
 }
@@ -222,4 +247,59 @@ textarea {
 
 .modalClose {
   cursor: pointer;
+}
+
+/* posts.index */
+#post-area {
+    border-bottom: 3px solid silver;
+}
+
+.post-area-form {
+    margin-left: 3vw;
+}
+
+.tweets {
+    border-bottom: 1px solid silver;
+    margin: 20px auto;
+}
+
+.tweets-box {
+    margin-left: 5vw;
+    margin-right: 3vw;
+}
+
+.tweet-title {
+    display: flex;
+    align-items: baseline;
+}
+
+.tweet-user-name {
+    margin-left: 1vw;
+}
+
+.tweet-created-time {
+    margin-left: auto;
+}
+
+.tweet-timeline {
+    margin-left: 5vw;
+}
+
+.tweet-menu {
+    text-align: right;
+    margin-right: 3vw;
+}
+
+
+.trash:hover{
+    background-image: url("../images/trash_h.png");
+}
+
+.edit-btn {
+    margin-left: auto;
+}
+
+.modal-edit-btn {
+    text-align: right;
+    margin-right: 3vw;
 }
