@@ -1,21 +1,21 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="search-forms">
+<div class="search-box">
+  
   {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
-  <div class="search-form">
+  <div class="search-forms">
   {!! Form::text('username' ,'', ['class' => 'search-form', 'placeholder' => ' ユーザー名'] ) !!}
-    <input type="image" src=""></input>
-    {!! Form::close() !!}
+  <input class="search-form-btn" type="image" src="images/post.png"></input>
+  {!! Form::close() !!}
+</div><!-- /.search-forms -->
 
     @if(!empty($search))
     <div class="search-form-result">
-      <label for="form"></label>
-      <p>{{ $search }}</p>
+      <p>検索ワード：{{ $search }}</p>
     </div><!-- /.search-form-result -->
     @endif
-  </div><!-- /.search-form -->
-</div><!-- /.search-forms-->
+</div><!-- /.search-box-->
 
 
 @foreach ($data as $all_user)
@@ -30,13 +30,13 @@
     @csrf
         {{ method_field('DELETE') }}
 
-        <button type="submit">フォロー解除</button>
+        <button class="btn btn-danger"type="submit">フォロー解除</button>
     </form>
   @else
     <form action="{{ route('follow', ['user' => $all_user->id]) }}" method="POST">
     @csrf
 
-        <button type="submit">フォローする</button>
+        <button class="btn btn-primary" type="submit">フォローする</button>
     </form>
   @endif
   </div><!-- /.user-list-follow-btn -->

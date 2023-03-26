@@ -67,7 +67,7 @@
                             <p>{{ $user->followsCount() }}名</p>
                         </div><!-- /.confirm-box-text -->
                         <div class="confirm-box-btn text-right">
-                            <p class="btn"><a href="/follow-list">フォローリスト</a></p>
+                            <p class="btn btn-darkblue"><a href="/follow-list">フォローリスト</a></p>
                         </div><!-- /.confirm-box-btn -->
                     </div>
                     <div class="confirm-box">
@@ -76,11 +76,11 @@
                             <p>{{ $user->followersCount() }}名</p>
                         </div><!-- /.confirm-box-text -->
                         <div class="confirm-box-btn text-right">
-                            <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                            <p class="btn btn-darkblue"><a href="/follower-list">フォロワーリスト</a></p>
                         </div><!-- /.confirm-box-btn text-right -->
                     </div>
                     <div class="search-btn text-center">
-                        <p class="btn"><a href="/search">ユーザー検索</a></p>
+                        <p class="btn btn-darkblue"><a href="/search">ユーザー検索</a></p>
                     </div><!-- /.search-btn -->
                 </div>
             </div>

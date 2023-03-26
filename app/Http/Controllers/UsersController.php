@@ -90,6 +90,7 @@ class UsersController extends Controller
             ->where('id', $id)
             ->first();
 
+
         $timelines = DB::table('posts')
             ->where('user_id', $id)
             ->get();
@@ -113,8 +114,18 @@ class UsersController extends Controller
         $id = $request->input('id');
         $user_name = $request->input('userName');
         $mail = $request->input('mail');
-        $password = $request->input('passWord');
         $bio = $request->input('bio');
+
+        $old_password = DB::table('users')
+            ->where('password_base', $id)
+            ->get();
+
+
+        if($request->input('passWord')) {
+            $password = $request->input('passWord');
+        } else {
+            $password = $old_password;
+        };
 
         $request->validate(
             [
@@ -125,7 +136,8 @@ class UsersController extends Controller
                 'image-file' => 'image',
             ],
             [
-                "required" => "入力必須",
+                "username.required" => "ユーザーネームは入力必須",
+                "mail.required" => "メールアドレスは入力必須",
                 "username.min" => "ユーザーネームは4文字以上から",
                 "mail.min" => "メールアドレスは4文字以上から",
                 "password.min" => "パスワードは4文字以上から",
@@ -148,6 +160,7 @@ class UsersController extends Controller
                 'username' => $user_name,
                 'mail' => $mail,
                 'password' => bcrypt($password),
+                'password_base' => $password,
                 'bio' => $bio,
                 'images' => $filename
             ]);
