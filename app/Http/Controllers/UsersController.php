@@ -94,7 +94,15 @@ class UsersController extends Controller
         $timelines = DB::table('posts')
             ->where('user_id', $id)
             ->get();
-        
+
+        $old_password = DB::table('users')
+            ->where('id', $id)
+            ->first(['password_base']);
+
+ $old_image = DB::table('users')
+            ->where('id', $id)
+            ->first(['images']);
+            
         $follow_ids = $follow->followingIds($user->id);
         $following_ids = $follow_ids->pluck('follower')->toArray();
         
@@ -106,6 +114,8 @@ class UsersController extends Controller
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
             'profile' => $profile,
+            'old_password' => $old_password,
+            'old_image' => $old_image
         ]);
     }
     
@@ -117,8 +127,13 @@ class UsersController extends Controller
         $bio = $request->input('bio');
 
         $old_password = DB::table('users')
-            ->where('password_base', $id)
-            ->get();
+            ->where('id', $id)
+            ->first(['password_base']);
+
+        $old_image = DB::table('users')
+            ->where('id', $id)
+            ->first(['images']);
+
 
 
         if($request->input('passWord')) {
@@ -129,30 +144,34 @@ class UsersController extends Controller
 
         $request->validate(
             [
-                'username' => 'required|min:4|max:12',
+                'userName' => 'required|min:4|max:12',
                 'mail' => 'required|min:4|max:12|unique:users,mail,'.$id.'',
-                'password' => 'nullable|numeric|digits_between:4,12|unique:users,password',
+                'passWord' => 'nullable|numeric|digits_between:4,12',
                 'bio' => 'max:200',
                 'image-file' => 'image',
             ],
             [
-                "username.required" => "ユーザーネームは入力必須",
+                "userName.required" => "ユーザーネームは入力必須",
                 "mail.required" => "メールアドレスは入力必須",
-                "username.min" => "ユーザーネームは4文字以上から",
+                "userName.min" => "ユーザーネームは4文字以上から",
                 "mail.min" => "メールアドレスは4文字以上から",
-                "password.min" => "パスワードは4文字以上から",
-                "username.max" => "ユーザーネームは12文字以内",
+                "passWord.min" => "パスワードは4文字以上から",
+                "userName.max" => "ユーザーネームは12文字以内",
                 "mail.max" => "メールアドレスは12文字以内",
-                "password.max" => "パスワードは12文字以内",
+                "passWord.max" => "パスワードは12文字以内",
                 "digits_between" => "4字以上12字以内",
                 "unique" => "既に存在します",
                 "image" => "jpg,png,bmp,gif,svgの拡張子のみ有効です"
             ],
         );
 
-        $image = $request->file('image-file');
-        $filename = $image->getClientOriginalName();
-        $request->file('image-file')->storeAs('images',$filename, 'public_uploads');
+        if($request->file('image-file') != null){
+            $image = $request->file('image-file');
+            $filename = $image->getClientOriginalName();
+            $request->file('image-file')->storeAs('images',$filename, 'public_uploads');
+        } else {
+            $filename = $old_image;
+        }
 
         DB::table('users')
             ->where('id', $id)

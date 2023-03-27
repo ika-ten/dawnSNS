@@ -17,7 +17,6 @@ header {
 }
 
 #head {
-    max-width: 1200px;
     margin: 0 5vw;
 }
 
@@ -270,6 +269,8 @@ textarea {
 
 .post-area-form-textarea textarea {
     border: none;
+    background-color: #fff;
+    width: 30vw;
 }
 
 .tweets {
@@ -446,10 +447,10 @@ textarea {
 }
 
 .image-form{
+    display: none;
     height: 9vw;
     width: 40vw;
 }
-
 
 
  input[type="file"]::-webkit-file-upload-button {
@@ -460,7 +461,7 @@ textarea {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, -55%);
   }
 
 
