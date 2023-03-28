@@ -8,6 +8,25 @@ body {
     background: #fff;
 }
 
+.btn-danger {
+    background-color: #B95656;
+}
+
+.btn-primary {
+    background-color: #4B71CA;
+}
+
+.material-symbols-outlined {
+    color: white;
+    display: block;
+    height: inherit;
+}
+
+.search-user-btn {
+    border: none;
+    background: #3C4767;
+    border-radius: 5px;
+}
 /* header */
 header {
     background: #3C4767;
@@ -270,7 +289,20 @@ textarea {
 .post-area-form-textarea textarea {
     border: none;
     background-color: #fff;
-    width: 30vw;
+    width: 50vw;
+    height: 7.5vw;
+}
+
+.post-area-form-textarea textarea::placeholder {
+  color: silver;
+}
+
+.post-area-form-icon {
+    margin: auto 0;
+}
+
+.post-area-form-postbtn {
+    margin-top: auto;
 }
 
 .tweets {
@@ -303,11 +335,22 @@ textarea {
 .tweet-menu {
     text-align: right;
     margin-right: 3vw;
+    display: flex;
+}
+
+.trash-btn {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-image: url(../images/trash.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
 }
 
 
-.trash:hover{
-    background-image: url("../images/trash_h.png");
+.trash-btn:hover{
+    background-image: url(../images/trash_h.png);
 }
 
 .edit-btn {
@@ -430,7 +473,7 @@ textarea {
     border-bottom: 1px solid #000;
     background-color: whitesmoke;
     margin: 0;
-    width: 25vw;
+    width: 20vw;
     position: relative;
 }
 
@@ -449,19 +492,29 @@ textarea {
 .image-form{
     display: none;
     height: 9vw;
-    width: 40vw;
+    margin-right: 0;
+}
+
+input[type="file"] {
+    width: 25vw;
 }
 
 
  input[type="file"]::-webkit-file-upload-button {
     background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent));
     background-color: white;
+    color: silver;
     border: 0;
     margin: 0 auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -55%);
+  }
+
+  .change-btn {
+    display: block;
+    margin-left: 30vw;
   }
 
 

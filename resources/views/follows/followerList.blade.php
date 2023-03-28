@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="follow-lists">
-  <p>Follow list</p>
+  <p>Follower list</p>
   <div class="follow-images">
   @foreach ($follower_id_lists as $follower_id_list)
     <div class="follow-image">
@@ -40,7 +40,7 @@
       @if ($timeline->user_id === Auth::user()->id)
       <div class="tweet-menu">
         <a class="edit-btn modalopen" href="" data-target="edit-modal-{{ $timeline -> id }}"><img src="images/edit.png" alt=""></a>
-        <a class="trash-btn" href="/post/{{ $timeline->id }}/delete"><img class="trash" src="images/trash.png" alt=""  onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a>
+         <a class="trash-btn" href="/post/{{ $timeline->id }}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a>
       </div>
       @endif
       

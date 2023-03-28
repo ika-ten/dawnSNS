@@ -42,10 +42,10 @@
             </li>
             <li class="image-form">
               {{ Form::label('Icon image') }}
-              {!! Form::file('image-file', null, ['class' => 'profile-form profile-form-image', 'id' => 'filename']) !!}
+              {!! Form::file('image-file', null, ['class' => 'profile-form profile-form-image']) !!}
             </li>
         </ul>
-        <button type="submit" class="btn btn-success pull-right">更新</button>
+        <button type="submit" class="btn btn-success change-btn">更新</button>
         {!! Form::close() !!}
     </div>
 @else

@@ -95,14 +95,15 @@ class UsersController extends Controller
             ->where('user_id', $id)
             ->get();
 
+       
         $old_password = DB::table('users')
             ->where('id', $id)
-            ->first(['password_base']);
+            ->value('password_base');
 
- $old_image = DB::table('users')
+        $old_image = DB::table('users')
             ->where('id', $id)
-            ->first(['images']);
-            
+            ->value('images');
+
         $follow_ids = $follow->followingIds($user->id);
         $following_ids = $follow_ids->pluck('follower')->toArray();
         
@@ -128,11 +129,11 @@ class UsersController extends Controller
 
         $old_password = DB::table('users')
             ->where('id', $id)
-            ->first(['password_base']);
+            ->value('password_base');
 
         $old_image = DB::table('users')
             ->where('id', $id)
-            ->first(['images']);
+            ->value('images');
 
 
 
@@ -145,8 +146,8 @@ class UsersController extends Controller
         $request->validate(
             [
                 'userName' => 'required|min:4|max:12',
-                'mail' => 'required|min:4|max:12|unique:users,mail,'.$id.'',
-                'passWord' => 'nullable|numeric|digits_between:4,12',
+                'mail' => 'required|min:4|unique:users,mail,'.$id.'',
+                'passWord' => 'nullable|min:4',
                 'bio' => 'max:200',
                 'image-file' => 'image',
             ],
@@ -157,9 +158,6 @@ class UsersController extends Controller
                 "mail.min" => "メールアドレスは4文字以上から",
                 "passWord.min" => "パスワードは4文字以上から",
                 "userName.max" => "ユーザーネームは12文字以内",
-                "mail.max" => "メールアドレスは12文字以内",
-                "passWord.max" => "パスワードは12文字以内",
-                "digits_between" => "4字以上12字以内",
                 "unique" => "既に存在します",
                 "image" => "jpg,png,bmp,gif,svgの拡張子のみ有効です"
             ],

@@ -6,7 +6,9 @@
   {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
   <div class="search-forms">
   {!! Form::text('username' ,'', ['class' => 'search-form', 'placeholder' => ' ユーザー名'] ) !!}
-  <input class="search-form-btn" type="image" src="images/post.png"></input>
+  <button class="search-user-btn" type="submit"><span class="material-symbols-outlined">
+search
+</span></button>
   {!! Form::close() !!}
 </div><!-- /.search-forms -->
 

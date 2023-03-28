@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="{{asset('css/reset.css')}}">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
