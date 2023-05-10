@@ -18,9 +18,13 @@
 
 //Auth::routes();
 
+Route::get('/', function () {
+  return view('login');  
+});
+
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
@@ -71,3 +75,5 @@ Route::get('/profile/{id}' , 'UsersController@index');
 Route::post('/profile/{id}' , 'UsersController@index');
 Route::post('user/update' , 'UsersController@update');
 
+
+Route::get('/test','PostsController@test');

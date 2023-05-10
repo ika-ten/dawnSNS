@@ -31,6 +31,7 @@ class UsersController extends Controller
         if ($request->has('username') && $search != '') {
             $users = User::where('username', 'like', "%{$search}%")->where('id', '<>', $user->id)->get();
             $data = $users;
+
         } else {
             $users = $user->getAllUsers(auth()->user()->id);
             $data = $users;

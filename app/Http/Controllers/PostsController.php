@@ -99,8 +99,21 @@ class PostsController extends Controller
         return redirect('posts');
     }
 
+    public function test()
+    {
+        $user = auth()->user();
+        $id = $user->id;
 
+        $timelines = DB::table('posts')
+                        ->where('user_id', $id)
+                        ->get();
 
-
-    
+        return view('test',
+            [
+                'user' => $user,
+                'id'  => $id,
+                'timelines' => $timelines
+            ]
+            );
+    }
 }
