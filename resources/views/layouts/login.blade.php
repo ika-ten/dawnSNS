@@ -25,7 +25,7 @@
     <header>
             <div id = "head">
                 <div id="head-left">
-                    <h1><a href="/top"><img src="{{asset('images/main_logo.png')}}"></a></h1>
+                    <h1><a href="./top"><img src="{{asset('images/main_logo.png')}}"></a></h1>
                 </div><!-- /.head-left -->
                 <div id="head-right">
                     <div id="head-right-box1">
@@ -44,9 +44,9 @@
     
                 <div id="accordion-content">
                     <ul>
-                        <li><a href="/top">ホーム</a></li>
-                        <li><a href="/profile/{{ $user->id }}">プロフィール</a></li>
-                        <li><a href="/logout">ログアウト</a></li>
+                        <li><a href="./top">ホーム</a></li>
+                        <li><a href="./profile/{{ $user->id }}">プロフィール</a></li>
+                        <li><a href="./logout">ログアウト</a></li>
                     </ul>
                 </div><!-- /#accordion-content -->
             </div><!-- /#head -->
@@ -68,7 +68,7 @@
                             <p>{{ $user->followsCount() }}名</p>
                         </div><!-- /.confirm-box-text -->
                         <div class="confirm-box-btn text-right">
-                            <p class="btn btn-darkblue"><a href="/follow-list">フォローリスト</a></p>
+                            <p class="btn btn-darkblue"><a href="./follow-list">フォローリスト</a></p>
                         </div><!-- /.confirm-box-btn -->
                     </div>
                     <div class="confirm-box">
@@ -77,11 +77,11 @@
                             <p>{{ $user->followersCount() }}名</p>
                         </div><!-- /.confirm-box-text -->
                         <div class="confirm-box-btn text-right">
-                            <p class="btn btn-darkblue"><a href="/follower-list">フォロワーリスト</a></p>
+                            <p class="btn btn-darkblue"><a href="./follower-list">フォロワーリスト</a></p>
                         </div><!-- /.confirm-box-btn text-right -->
                     </div>
                     <div class="search-btn text-center">
-                        <p class="btn btn-darkblue"><a href="/search">ユーザー検索</a></p>
+                        <p class="btn btn-darkblue"><a href="./search">ユーザー検索</a></p>
                     </div><!-- /.search-btn -->
                 </div>
             </div>

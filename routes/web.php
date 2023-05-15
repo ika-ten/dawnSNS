@@ -24,8 +24,8 @@ Route::get('/', function () {
 
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/login', 'Auth\LoginController@login');
+Route::get('/', 'Auth\LoginController@login')->name('login');
+Route::post('/', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
