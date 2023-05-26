@@ -25,7 +25,7 @@
     <header>
             <div id = "head">
                 <div id="head-left">
-                    <h1><a href="./top"><img src="{{asset('images/main_logo.png')}}"></a></h1>
+                    <h1><a href="{{ url('/top') }}"><img src="{{asset('images/main_logo.png')}}"></a></h1>
                 </div><!-- /.head-left -->
                 <div id="head-right">
                     <div id="head-right-box1">
