@@ -1,17 +1,14 @@
 @charset "utf-8";
 
-html{
-    height: 100%;
-}
 body{
-    height: 100%;
-    background: linear-gradient(#3C4767 60%, tomato)
+    height: 100vh;
+    background: linear-gradient(#3C4767 60vh, tomato)
 }
 
 header {
     text-align: center;
-    margin-top: 255px;
-    margin-bottom: 50px;
+    margin-top: 8vw;
+    margin-bottom: 10px;
 }
 
 p {
@@ -27,8 +24,8 @@ p {
     width: 100%;
     margin: 0 auto;
     background: rgba(10,10,10,0.2);
-    padding: 55px 20px;
-    border-radius: 4px;
+    padding: 20px 20px;
+    border-radius: 8px;
 }
 
 .form-title {

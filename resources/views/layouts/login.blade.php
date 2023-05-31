@@ -56,7 +56,7 @@
         <div id="row">
             <div id="container">
                 @yield('content')
-            </div >
+            </div>
             <div id="side-bar">
                 <div id="confirm">
                     <div class="confirm-box">
