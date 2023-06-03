@@ -6,9 +6,13 @@ body{
 }
 
 header {
-    text-align: center;
-    margin-top: 8vw;
-    margin-bottom: 10px;
+    text-align: center; 
+    padding-top: 12vh;
+
+}
+
+h1 {
+    margin: 0;
 }
 
 p {
@@ -47,7 +51,7 @@ input[type = "password"]{
     padding: 5px;
     border: none;
     background: #FFF;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 
 input[type = "submit" i] {
